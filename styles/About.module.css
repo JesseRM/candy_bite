@@ -1,0 +1,12 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.message {
+  width: 85%;
+  line-height: 2;
+  text-align: left;
+}
