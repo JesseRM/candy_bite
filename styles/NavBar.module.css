@@ -1,0 +1,139 @@
+.flex {
+  display: flex;
+  gap: var(--gap, 1.5rem);
+}
+
+.links-container {
+  position: fixed;
+  inset: 0 0 0 40%;
+  flex-direction: column;
+  list-style: none;
+  padding: 15vh 5rem;
+  margin: 0;
+  transition: 350ms ease-out;
+  transform: translateX(100%);
+  background-color: #c0c0c0;
+  color: white;
+}
+
+.primary-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 7.5vh;
+  z-index: 9888;
+  align-items: center;
+  justify-content: space-between;
+  background-image: linear-gradient(
+    280deg,
+    hsl(209deg 100% 30%) 0%,
+    hsl(210deg 85% 33%) 18%,
+    hsl(211deg 75% 35%) 37%,
+    hsl(211deg 68% 37%) 55%,
+    hsl(211deg 62% 39%) 70%,
+    hsl(211deg 57% 40%) 82%,
+    hsl(211deg 52% 42%) 92%,
+    hsl(211deg 48% 44%) 100%
+  );
+}
+
+.links-container[data-visible="true"] {
+  transition: 350ms ease-in;
+  transform: translateX(0%);
+}
+
+.nav-toggle {
+  position: absolute;
+  z-index: 9999;
+  aspect-ratio: 1;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.6rem;
+}
+
+.logo-container {
+  position: relative;
+  width: 20%;
+  height: 50%;
+}
+
+.title {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.site-name-1 {
+  color: #fca311;
+}
+
+.site-name-2 {
+  color: #ffccd5;
+}
+
+@media (min-width: 400px) {
+  .primary-header {
+    height: 6vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .links-container {
+    --gap: 2rem;
+    
+    position: static;
+    flex-direction: row;
+    transform: translateX(0%);
+    background-color: transparent;
+    padding: 0;
+    inset: 0;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .primary-nav {
+    margin-right: 3rem;
+  }
+
+  .title {
+    text-align: left;
+    margin-left: 5rem;
+  }
+
+  .logo-container {
+    width: 10%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .primary-header {
+    height: 8vh;
+  }
+  
+  .links-container {
+    --gap: 3rem;
+    
+    margin-right: 3rem;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .primary-nav {
+    margin-right: 5rem;
+  }
+
+  .title {
+    text-align: left;
+    margin-left: 7rem;
+  }
+
+  .logo-container {
+    width: 3rem;
+    margin-left: 3rem;
+  }
+}
+
