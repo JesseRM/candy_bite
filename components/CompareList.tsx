@@ -5,15 +5,15 @@ import styles from "../styles/CompareList.module.css";
 import { useContext } from "react";
 import { listenerCount } from "process";
 
-const CompareList = ({ nutrIndex, selected, sortOrder }: {nutrIndex: any, selected: any, sortOrder: any }) => {
+const CompareList = ({ nutrIndex, selected, sortOrder }: {nutrIndex: number, selected: any, sortOrder: any }) => {
   const list = [...selected];
   const NUTRIENTS = {
-    '2': 'Calories',
-    '4': 'Fat',
-    '8': 'Sugar',
-    '3': 'Protein',
-    '6': 'Carbs',
-    '15': 'Sodium' 
+    2: 'Calories',
+    4: 'Fat',
+    8: 'Sugar',
+    3: 'Protein',
+    6: 'Carbs',
+    15: 'Sodium' 
   };
   
   if (sortOrder === "ascending") {
@@ -48,7 +48,7 @@ const CompareList = ({ nutrIndex, selected, sortOrder }: {nutrIndex: any, select
             </div>
             <div className={styles['info-container']}>
               <div className={styles.nutrient}>
-                <span>{NUTRIENTS[`${nutrIndex}`]}:</span>
+                <span>{NUTRIENTS[nutrIndex as keyof typeof NUTRIENTS]}:</span>
               </div>
               <div className={styles.amount}>
                 <span>{candy['nutrients'][nutrIndex]['amount'] + ' ' + unitName}</span>
