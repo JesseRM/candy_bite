@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import styles from '../styles/SearchBar.module.css';
 
-const SearchBar = ({ setFound, term, setTerm, setFetching, setNoResults}: {setFound: any, term: any, setTerm: any, setFetching: any, setNoResults: any}) => {  
+const SearchBar = ({ setFound, term, setTerm, setFetching, setNoResults}: {setFound: any, term: string, setTerm: any, setFetching: any, setNoResults: any}) => {  
   function handleclick() {
     fetchCandy();
   }
@@ -20,7 +20,7 @@ const SearchBar = ({ setFound, term, setTerm, setFetching, setNoResults}: {setFo
   function fetchCandy() {
     if (!term || term.trim().length === 0) return;
     
-    const url = `/api/candy/${term}`;
+    const url = `/api/candy/${term.toLowerCase()}`;
     fetch(url)
       .then(response => response.json())
       .then((data) => {
