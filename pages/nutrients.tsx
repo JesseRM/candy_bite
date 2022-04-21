@@ -8,6 +8,12 @@ import Link from 'next/link';
 
 const Nutrients: NextPage = () => {
   const { selectedCandy } = useContext(CandyBiteContext);
+
+  if (!selectedCandy) {
+    return (
+      <div>You have not selected a candy yet</div>
+    )
+  }
   const calories = selectedCandy['nutrients'][2]['amount'];
   const caloriesUnit = selectedCandy['nutrients'][2]['nutrient']['unitName'];
   const fat = selectedCandy['nutrients'][4]['amount'];
