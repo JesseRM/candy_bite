@@ -9,6 +9,8 @@ Major objectives of the project were:
   2. Display proper image of each candy
   3. Allow user to compare candy by various nutrients and allow sorting by ascending/ descending order.
 
+<img src="https://raw.githubusercontent.com/JesseRM/candy_bite/main/screenshot/candy_bite.jpg" width="600">
+
 ## Usage
 [Live Demo](https://candy-bite.vercel.app/)
 
