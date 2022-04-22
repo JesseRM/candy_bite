@@ -1,11 +1,13 @@
-import CandyBiteContext from "../context/state";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "../styles/CompareList.module.css";
-import { useContext } from "react";
-import { listenerCount } from "process";
 
-const CompareList = ({ nutrIndex, selected, sortOrder }: {nutrIndex: number, selected: any, sortOrder: any }) => {
+interface CompareListProps {
+  nutrIndex: number;
+  selected: any;
+  sortOrder: string;
+}
+
+const CompareList = ({ nutrIndex, selected, sortOrder }: CompareListProps) => {
   const list = [...selected];
   const NUTRIENTS = {
     2: 'Calories',
