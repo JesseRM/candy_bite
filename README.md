@@ -10,7 +10,7 @@ Major objectives of the project were:
   3. Allow user to compare candy by various nutrients and allow sorting by ascending/ descending order.
 
 ## Usage
-[Live Demo](candy-bite.vercel.app)
+[Live Demo](https://candy-bite.vercel.app/)
 
 Use the search bar to search for candy in the Home page. If candy is found matching the term, results will be displayed.
 Clicking on any of the candy will display a table that contains nutrients and their values.
