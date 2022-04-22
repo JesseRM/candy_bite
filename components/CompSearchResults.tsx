@@ -1,12 +1,18 @@
 import Image from "next/image";
+import { Dispatch, SetStateAction, MouseEvent } from "react";
 import { IoAddCircle} from 'react-icons/io5';
 import styles from "../styles/CompSearchResults.module.css";
 
+interface CompSearchResultsProps {
+  found: any;
+  selected: any;
+  setSelected: Dispatch<SetStateAction<never[]>>;
+}
 
-const CompSearchResults = ({ found, selected,  setSelected}: {found: any, selected: any, setSelected: any}) => {
-  function handleAddClick(event: any, candy: any) {
+const CompSearchResults = ({ found, selected,  setSelected}: CompSearchResultsProps) => {
+  function handleAddClick(event: MouseEvent<SVGElement, globalThis.MouseEvent>, candy: any) {
     const added = selected.find((element: any) => element.candyName === candy.candyName);
-    let newSelected;
+    let newSelected: any;
 
     if (added) {
       newSelected = selected.filter((element: any) => element.candyName !== candy.candyName);
