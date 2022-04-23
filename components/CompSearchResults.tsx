@@ -29,7 +29,10 @@ const CompSearchResults = ({ found, selected,  setSelected}: CompSearchResultsPr
         const alreadySelected = selected.find((element: any) => element.candyName === candy.candyName);
         
         return(
-          <div key={index} className={styles['card']}>
+          <div 
+            key={index} 
+            className={styles['card']}
+          >
             <div className={styles['image-container']}>
               <Image 
                 src={candy.imageUrl} 
