@@ -25,13 +25,23 @@ const NavBar = () => {
         <span className={styles['site-name-1']}>Candy</span> <span className={styles['site-name-2']}>Bite</span>
       </div>
       {showMenu && 
-        <IoClose className={styles["nav-toggle"]} onClick={displayMenu} />
+        <IoClose 
+          className={styles["nav-toggle"]} 
+          onClick={displayMenu} 
+        />
       }
       {!showMenu && 
-        <IoMenu className={styles["nav-toggle"]} onClick={displayMenu} />
+        <IoMenu 
+          className={styles["nav-toggle"]} 
+          onClick={displayMenu} 
+        />
       }
       <nav className={styles["primary-nav"]}>
-        <ul onClick={displayMenu} className={`${styles["links-container"]} ${styles.flex}`} data-visible={showMenu}>
+        <ul 
+          className={`${styles["links-container"]} ${styles.flex}`} 
+          onClick={displayMenu} 
+          data-visible={showMenu}
+        >
           <li>
             <Link href='/'>Home</Link>
           </li>
