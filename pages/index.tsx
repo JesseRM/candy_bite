@@ -9,7 +9,6 @@ import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   const [found, setFound] = useState(null);
-  const [term, setTerm] = useState('');
   const [fetching, setFetching] = useState(false);
   const [noResults, setNoResults] = useState(false);
   
@@ -21,8 +20,6 @@ const Home: NextPage = () => {
       </div>
       <SearchBar 
         setFound={setFound} 
-        term={term} 
-        setTerm={setTerm}
         setFetching={setFetching}
         setNoResults={setNoResults} 
       />

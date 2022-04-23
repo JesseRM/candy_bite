@@ -1,8 +1,16 @@
-import { useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import styles from '../styles/SearchBar.module.css';
 
-const SearchBar = ({ setFound, term, setTerm, setFetching, setNoResults}: {setFound: any, term: string, setTerm: any, setFetching: any, setNoResults: any}) => {  
+interface SearchBarProps {
+  setFound: Dispatch<SetStateAction<null>>;
+  setFetching: Dispatch<SetStateAction<boolean>>;
+  setNoResults: Dispatch<SetStateAction<boolean>>;
+}
+
+const SearchBar = ({ setFound, setFetching, setNoResults }: SearchBarProps) => {  
+  const [term, setTerm] = useState("");
+  
   function handleclick() {
     fetchCandy();
   }
@@ -47,7 +55,10 @@ const SearchBar = ({ setFound, term, setTerm, setFetching, setNoResults}: {setFo
         onChange={(event) => setTerm(event.target.value)}
         onKeyUp={handleKeyUp}
       />
-      <button className={styles['search-btn']} onClick={handleclick}>
+      <button 
+        className={styles['search-btn']} 
+        onClick={handleclick}
+      >
         <IoSearch />
       </button>
     </div>

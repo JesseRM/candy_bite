@@ -13,7 +13,6 @@ const Compare: NextPage = () => {
   const [sortOrder, setSortOrder] = useState('descending');
   const [selected, setSelected] = useState([]);
   const [found, setFound] = useState(null);
-  const [term, setTerm] = useState('');
   const [searchMode, setSearchMode] = useState(true);
   const [fetching, setFetching] = useState(false);
   const [noResults, setNoResults] = useState(false);
@@ -42,9 +41,7 @@ const Compare: NextPage = () => {
       {searchMode &&
         <>
         <SearchBar 
-          setFound={setFound} 
-          term={term} 
-          setTerm={setTerm} 
+          setFound={setFound}  
           setFetching={setFetching}
           setNoResults={setNoResults} 
         />
