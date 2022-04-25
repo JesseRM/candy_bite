@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import CompareInstructions from "../components/CompareInstructions";
 import CompareList from "../components/CompareList";
 import CompSearchResults from "../components/CompSearchResults";
@@ -17,11 +17,11 @@ const Compare: NextPage = () => {
   const [fetching, setFetching] = useState(false);
   const [noResults, setNoResults] = useState(false);
   
-  function handleNutrChange(event: any) {
+  function handleNutrChange(event: ChangeEvent<HTMLSelectElement>) {
     setNutrIndex(parseInt(event.target.value));
   }
 
-  function handleSortChange(event: any) {
+  function handleSortChange(event: ChangeEvent<HTMLSelectElement>) {
     setSortOrder(event.target.value);
   }
 
@@ -40,17 +40,26 @@ const Compare: NextPage = () => {
       <h1 className={styles['title']}>Compare Nutrients</h1>
       {searchMode &&
         <>
-        <SearchBar 
-          setFound={setFound}  
-          setFetching={setFetching}
-          setNoResults={setNoResults} 
-        />
-        <div className={styles['done-btn-container']}>
-          <button className={styles['done-btn']} onClick={handleDoneClick}>Done</button>
-        </div>
-        {!fetching && 
-          <CompSearchResults found={found} selected={selected} setSelected={setSelected} />
-        }
+          <SearchBar 
+            setFound={setFound}  
+            setFetching={setFetching}
+            setNoResults={setNoResults} 
+          />
+          <div className={styles['done-btn-container']}>
+            <button 
+              className={styles['done-btn']} 
+              onClick={handleDoneClick}
+            >
+              Done
+            </button>
+          </div>
+          {!fetching && 
+            <CompSearchResults 
+              found={found} 
+              selected={selected} 
+              setSelected={setSelected} 
+            />
+          }
         </>
       }
       {(found === null && searchMode && !fetching) &&
@@ -66,7 +75,11 @@ const Compare: NextPage = () => {
         <>
           <div className={styles['controls-container']}>
             <div>
-              <select value={nutrIndex} className={styles['nutrient']} onChange={handleNutrChange}>
+              <select 
+                value={nutrIndex} 
+                className={styles['nutrient']} 
+                onChange={handleNutrChange}
+              >
                 <option value={2}>Calories</option>
                 <option value={4}>Fat</option>
                 <option value={8}>Sugar</option>
@@ -76,12 +89,21 @@ const Compare: NextPage = () => {
               </select>
             </div>
             <div>
-              <select value={sortOrder} className={styles['sort']}onChange={handleSortChange}>
+              <select 
+                value={sortOrder} 
+                className={styles['sort']}
+                onChange={handleSortChange}
+              >
                 <option value={'descending'}>High to low</option>
                 <option value={'ascending'}>Low to high</option>
               </select>
             </div>
-            <button className={styles['add']} onClick={handleAddClick}>Add Item</button>
+            <button 
+              className={styles['add']} 
+              onClick={handleAddClick}
+            >
+              Add Item
+            </button>
           </div>
           <CompareList 
             nutrIndex={nutrIndex} 
