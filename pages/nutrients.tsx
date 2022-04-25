@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import CandyBiteContext from '../context/state'
 import Image from 'next/image'
 import { IoArrowBack } from 'react-icons/io5';
@@ -14,18 +14,18 @@ const Nutrients: NextPage = () => {
       <div>You have not selected a candy yet</div>
     )
   }
-  const calories = selectedCandy['nutrients'][2]['amount'];
-  const caloriesUnit = selectedCandy['nutrients'][2]['nutrient']['unitName'];
-  const fat = selectedCandy['nutrients'][4]['amount'];
-  const fatUnit = selectedCandy['nutrients'][4]['nutrient']['unitName'];
-  const sugar = selectedCandy['nutrients'][8]['amount'];
-  const sugarUnit = selectedCandy['nutrients'][8]['nutrient']['unitName'];
-  const protein = selectedCandy['nutrients'][3]['amount'];
-  const proteinUnit = selectedCandy['nutrients'][3]['nutrient']['unitName'];
-  const carbohydrate = selectedCandy['nutrients'][6]['amount'];
-  const carbohydrateUnit = selectedCandy['nutrients'][6]['nutrient']['unitName'];
-  const sodium = selectedCandy['nutrients'][15]['amount'];
-  const sodiumUnit = selectedCandy['nutrients'][15]['nutrient']['unitName'];
+  const calories: number = selectedCandy['nutrients'][2]['amount'];
+  const caloriesUnit: string = selectedCandy['nutrients'][2]['nutrient']['unitName'];
+  const fat: number = selectedCandy['nutrients'][4]['amount'];
+  const fatUnit: string = selectedCandy['nutrients'][4]['nutrient']['unitName'];
+  const sugar: number = selectedCandy['nutrients'][8]['amount'];
+  const sugarUnit: string = selectedCandy['nutrients'][8]['nutrient']['unitName'];
+  const protein: number = selectedCandy['nutrients'][3]['amount'];
+  const proteinUnit: string = selectedCandy['nutrients'][3]['nutrient']['unitName'];
+  const carbohydrate: number = selectedCandy['nutrients'][6]['amount'];
+  const carbohydrateUnit: string = selectedCandy['nutrients'][6]['nutrient']['unitName'];
+  const sodium: number = selectedCandy['nutrients'][15]['amount'];
+  const sodiumUnit: string = selectedCandy['nutrients'][15]['nutrient']['unitName'];
   
   return (
     <div>
@@ -41,7 +41,10 @@ const Nutrients: NextPage = () => {
         </div>
       </div>
       <div className={styles['back-btn-container']}>
-        <Link href='/' passHref={true}>
+        <Link 
+          href='/' 
+          passHref={true}
+        >
           <button className={styles['back-btn']}>
             <IoArrowBack />
           </button>
