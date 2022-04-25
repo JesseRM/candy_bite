@@ -37,7 +37,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       const candyName = candies[i].candy_name;
       const imageUrl = candies[i].image_url;
-      const portion = current['inputFoods'][0]['ingredientWeight'];
+      const portion: number = current['inputFoods'][0]['ingredientWeight'];
       const nutrients = current['foodNutrients'];
       
       
