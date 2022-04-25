@@ -13,10 +13,17 @@ const SearchResult = ({ found }: {found: any}) => {
   
   return (
     <div className={styles['main-container']}>
-      {found && found.map((candy: any, index: any) => {
+      {found && found.map((candy: any, index: number) => {
         return(
-          <div key={index} className={styles['card']} onClick={() => handleClick(index)}>
-            <Link href='/nutrients' passHref={true}>
+          <div 
+            key={index} 
+            className={styles['card']} 
+            onClick={() => handleClick(index)}
+          >
+            <Link 
+              href='/nutrients' 
+              passHref={true}
+            >
             <div className={styles['image-container']}>
               <Image 
                 src={candy.imageUrl} 
@@ -26,7 +33,10 @@ const SearchResult = ({ found }: {found: any}) => {
               />
             </div>
             </Link>
-            <Link href='/nutrients' passHref={true}>
+            <Link 
+              href='/nutrients' 
+              passHref={true}
+            >
             <div className={styles['info-container']}>
               <span>{candy.candyName.toUpperCase()}</span>
             </div>
