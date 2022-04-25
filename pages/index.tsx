@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <div className={styles['welcome-container']}>
-        <div className={styles['background-image']}> </div>
+        <div className={styles['background-image']}></div>
         <h1 className={styles['welcome']}>Nutritional Information of Your Favorite Candy</h1>
       </div>
       <SearchBar 
