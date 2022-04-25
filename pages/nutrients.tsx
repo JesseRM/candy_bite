@@ -14,6 +14,7 @@ const Nutrients: NextPage = () => {
       <div>You have not selected a candy yet</div>
     )
   }
+  
   const calories: number = selectedCandy['nutrients'][2]['amount'];
   const caloriesUnit: string = selectedCandy['nutrients'][2]['nutrient']['unitName'];
   const fat: number = selectedCandy['nutrients'][4]['amount'];
