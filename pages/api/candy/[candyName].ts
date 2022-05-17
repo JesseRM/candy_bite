@@ -15,7 +15,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const candies = await prisma.candy.findMany({
       where: {
         candy_name : {
-          contains: candyName
+          contains: candyName.toLowerCase()
         }
       }
     });
