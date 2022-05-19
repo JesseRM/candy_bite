@@ -20,35 +20,43 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       }
     });
 
-    const fdcIds = [];
-
-    for (const candy of candies) {
-      fdcIds.push(candy.fdc_id);
-    }
-
-    const usda_api = `https://api.nal.usda.gov/fdc/v1/foods?fdcIds=${fdcIds.join()}&api_key=${process.env.USDA_API_KEY}`;
-
     const data: CandyInfo[] = [];
 
-    const results = await fetch(usda_api).then(res => res.json());
+    for (const candy of candies) {
+      const fdcId = candy.fdc_id;
+      const usdaApi = `https://api.nal.usda.gov/fdc/v1/food/${fdcId}?api_key=${process.env.USDA_API_KEY}`;
+      let statusCode = 404;
+      let response: Response | null = null;
+      let result: any;
 
-    for (let i = 0; i < results.length; i++) {
-      const current: any = results[i];
-
-      const candyName = candies[i].candy_name;
-      const imageUrl = candies[i].image_url;
-      const portion: number = current['inputFoods'][0]['ingredientWeight'];
-      const nutrients = current['foodNutrients'];
-      
-      
-      const info: CandyInfo = {
-        candyName,
-        imageUrl,
-        portion,
-        nutrients
+      /*
+        For some reason USDA API frequently returns 404 error when making requests.
+        Will eventually proivde data after a few attempts. We need to continue
+        to make request until we don't get a 404. Also, the API is very slow overall,
+        especially when having to make requests for multiple items.
+      */
+      while (statusCode === 404) {
+        response = await fetch(usdaApi);
+        statusCode = response.status;
       }
 
-      data.push(info);
+      if (response) {
+        result = await response.json();
+
+        const candyName = candy.candy_name;
+        const imageUrl = candy.image_url;
+        const portion: number = result['inputFoods'][0]['ingredientWeight'];
+        const nutrients = result['foodNutrients'];
+
+        const info: CandyInfo = {
+          candyName,
+          imageUrl,
+          portion,
+          nutrients
+        }
+
+        data.push(info);
+      }
     }
     
     res.status(200);
