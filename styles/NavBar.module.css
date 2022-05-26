@@ -20,7 +20,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  height: 7.5vh;
+  height: 3rem;
   z-index: 9888;
   align-items: center;
   justify-content: space-between;
@@ -73,7 +73,7 @@
 
 @media (min-width: 400px) {
   .primary-header {
-    height: 6vh;
+    height: 3.2rem;
   }
 }
 
@@ -109,7 +109,7 @@
 
 @media (min-width: 1024px) {
   .primary-header {
-    height: 8vh;
+    height: 3.5rem;
   }
   
   .links-container {
