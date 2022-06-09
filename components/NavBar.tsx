@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../styles/NavBar.module.css';
 import { IoMenu, IoClose } from 'react-icons/io5';
+import CandyBiteContext from '../context/state';
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const { setSearchResults } = useContext(CandyBiteContext);
 
   function displayMenu() {
     setShowMenu(showMenu ? false : true);
+  }
+
+  function clearSearchResults() {
+    setSearchResults(null);
   }
   
   return (
@@ -42,7 +48,7 @@ const NavBar = () => {
           onClick={displayMenu} 
           data-visible={showMenu}
         >
-          <li>
+          <li onClick={clearSearchResults}>
             <Link href='/'>Home</Link>
           </li>
           <li>
