@@ -12,7 +12,7 @@ Major objectives of the project were:
 <img src="https://raw.githubusercontent.com/JesseRM/candy_bite/main/screenshot/candy_bite.jpg" width="600">
 
 ## Usage
-[Live Demo](https://candy-bite.vercel.app/)
+[Live Demo](https://candybite.herokuapp.com/)
 
 Use the search bar to search for candy in the Home page. If candy is found matching the term, results will be displayed.
 Clicking on any of the candy will display a table that contains nutrients and their values.
