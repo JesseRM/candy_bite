@@ -4,16 +4,16 @@ import Link from "next/link";
 import styles from "../styles/SearchResult.module.css";
 import { useContext } from "react";
 
-const SearchResult = ({ found }: {found: any}) => {
+const SearchResult = ({ searchResults }: {searchResults: any}) => {
   const { setSelectedCandy } = useContext(CandyBiteContext);
 
   function handleClick(index: number) {
-    setSelectedCandy(found[index]);
+    setSelectedCandy(searchResults[index]);
   }
   
   return (
     <div className={styles['main-container']}>
-      {found && found.map((candy: any, index: number) => {
+      {searchResults && searchResults.map((candy: any, index: number) => {
         return(
           <div 
             key={index} 

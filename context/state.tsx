@@ -4,9 +4,12 @@ const CandyBiteContext = createContext<any>({} as any);
 
 export const CandyBiteProvider = ({ children }: {children: any}) => {
   const [selectedCandy, setSelectedCandy] = useState(null);
+  const [searchResults, setSearchResults] = useState(null);
   const value = {
     selectedCandy,
-    setSelectedCandy
+    setSelectedCandy,
+    searchResults,
+    setSearchResults
   }
 
   return (
