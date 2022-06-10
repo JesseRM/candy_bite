@@ -1,21 +1,23 @@
 import { NextPage } from "next";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import CompareInstructions from "../components/CompareInstructions";
 import CompareList from "../components/CompareList";
 import CompSearchResults from "../components/CompSearchResults";
 import NoResult from "../components/NoResult";
 import SearchBar from "../components/SearchBar";
 import Spinner from "../components/Spinner";
+import CandyBiteContext from "../context/state";
+import CandyInfo from "../interfaces/globalInterfaces";
 import styles from "../styles/Compare.module.css";
 
 const Compare: NextPage = () => {
   const [nutrIndex, setNutrIndex] = useState(2);
   const [sortOrder, setSortOrder] = useState('descending');
   const [selected, setSelected] = useState([]);
-  const [found, setFound] = useState(null);
   const [searchMode, setSearchMode] = useState(true);
   const [fetching, setFetching] = useState(false);
   const [noResults, setNoResults] = useState(false);
+  const { searchResults, setSearchResults } = useContext(CandyBiteContext); 
   
   function handleNutrChange(event: ChangeEvent<HTMLSelectElement>) {
     setNutrIndex(parseInt(event.target.value));
@@ -31,7 +33,7 @@ const Compare: NextPage = () => {
 
   function handleDoneClick() {
     setSearchMode(false);
-    setFound(null);
+    setSearchResults([]);
     setNoResults(false);
   }
   
@@ -41,7 +43,7 @@ const Compare: NextPage = () => {
       {searchMode &&
         <>
           <SearchBar 
-            setFound={setFound}  
+            setSearchResults={setSearchResults}  
             setFetching={setFetching}
             setNoResults={setNoResults} 
           />
@@ -55,14 +57,14 @@ const Compare: NextPage = () => {
           </div>
           {!fetching && 
             <CompSearchResults 
-              found={found} 
+              searchResults={searchResults} 
               selected={selected} 
               setSelected={setSelected} 
             />
           }
         </>
       }
-      {(found === null && searchMode && !fetching) &&
+      {(searchResults.length === 0 && searchMode && !fetching) &&
         <CompareInstructions />
       }
       {(noResults && !fetching) &&

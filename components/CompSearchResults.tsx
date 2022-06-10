@@ -4,12 +4,12 @@ import { IoAddCircle} from 'react-icons/io5';
 import styles from "../styles/CompSearchResults.module.css";
 
 interface CompSearchResultsProps {
-  found: any;
+  searchResults: any;
   selected: any;
   setSelected: Dispatch<SetStateAction<never[]>>;
 }
 
-const CompSearchResults = ({ found, selected,  setSelected}: CompSearchResultsProps) => {
+const CompSearchResults = ({ searchResults, selected,  setSelected}: CompSearchResultsProps) => {
   function handleAddClick(event: MouseEvent<SVGElement, globalThis.MouseEvent>, candy: any) {
     const added = selected.find((element: any) => element.candyName === candy.candyName);
     let newSelected: any;
@@ -25,7 +25,7 @@ const CompSearchResults = ({ found, selected,  setSelected}: CompSearchResultsPr
 
   return (
     <div className={styles['main-container']}>
-      {found && found.map((candy: any, index: any) => {
+      {searchResults && searchResults.map((candy: any, index: any) => {
         const alreadySelected = selected.find((element: any) => element.candyName === candy.candyName);
         
         return(

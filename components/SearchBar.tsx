@@ -1,14 +1,15 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
+import CandyInfo from '../interfaces/globalInterfaces';
 import styles from '../styles/SearchBar.module.css';
 
 interface SearchBarProps {
-  setFound: Dispatch<SetStateAction<null>>;
+  setSearchResults: React.Dispatch<React.SetStateAction<CandyInfo[]>>;
   setFetching: Dispatch<SetStateAction<boolean>>;
   setNoResults: Dispatch<SetStateAction<boolean>>;
 }
 
-const SearchBar = ({ setFound, setFetching, setNoResults }: SearchBarProps) => {  
+const SearchBar = ({ setSearchResults, setFetching, setNoResults }: SearchBarProps) => {  
   const [term, setTerm] = useState("");
   
   function handleclick() {
@@ -33,7 +34,7 @@ const SearchBar = ({ setFound, setFetching, setNoResults }: SearchBarProps) => {
       .then(response => response.json())
       .then((data) => {
         setFetching(false);
-        setFound(data);
+        setSearchResults(data);
         setNoResults(data.length === 0 ? true : false);
       });
   }

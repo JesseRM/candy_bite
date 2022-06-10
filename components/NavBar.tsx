@@ -14,7 +14,7 @@ const NavBar = () => {
   }
 
   function clearSearchResults() {
-    setSearchResults(null);
+    setSearchResults([]);
   }
   
   return (
@@ -51,10 +51,10 @@ const NavBar = () => {
           <li onClick={clearSearchResults}>
             <Link href='/'>Home</Link>
           </li>
-          <li>
+          <li onClick={clearSearchResults}>
             <Link href='/compare'>Compare</Link>
           </li>
-          <li>
+          <li onClick={clearSearchResults}>
             <Link href='/about'>About</Link>
           </li>
         </ul>

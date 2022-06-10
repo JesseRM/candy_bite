@@ -1,11 +1,19 @@
 import React, { createContext, useState } from "react";
+import CandyInfo from "../interfaces/globalInterfaces";
 
-const CandyBiteContext = createContext<any>({} as any);
+interface ContextProps {
+  selectedCandy: CandyInfo | null;
+  setSelectedCandy: React.Dispatch<React.SetStateAction<CandyInfo | null>>;
+  searchResults: CandyInfo[];
+  setSearchResults: React.Dispatch<React.SetStateAction<CandyInfo[]>>
+}
+
+const CandyBiteContext = createContext<ContextProps>({} as ContextProps);
 
 export const CandyBiteProvider = ({ children }: {children: any}) => {
-  const [selectedCandy, setSelectedCandy] = useState(null);
-  const [searchResults, setSearchResults] = useState(null);
-  const value = {
+  const [selectedCandy, setSelectedCandy] = useState<CandyInfo | null>(null);
+  const [searchResults, setSearchResults] = useState<CandyInfo[]>([]);
+  const value: ContextProps = {
     selectedCandy,
     setSelectedCandy,
     searchResults,

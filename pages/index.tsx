@@ -20,11 +20,11 @@ const Home: NextPage = () => {
         <h1 className={styles['welcome']}>Nutritional Information of Your Favorite Candy</h1>
       </div>
       <SearchBar 
-        setFound={setSearchResults} 
+        setSearchResults={setSearchResults} 
         setFetching={setFetching}
         setNoResults={setNoResults} 
       />
-      {(searchResults === null && !fetching) &&
+      {(searchResults.length === 0 && !fetching) &&
         <Introduction />
       }
       {fetching && 
