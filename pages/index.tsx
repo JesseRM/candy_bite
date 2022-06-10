@@ -9,7 +9,7 @@ import CandyBiteContext from '../context/state'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
-  const { searchResults, setSearchResults } = useContext(CandyBiteContext);
+  const { searchResults, setSearchResults, attemptedSearch } = useContext(CandyBiteContext);
   const [fetching, setFetching] = useState(false);
   const [noResults, setNoResults] = useState(false);
   
@@ -24,7 +24,7 @@ const Home: NextPage = () => {
         setFetching={setFetching}
         setNoResults={setNoResults} 
       />
-      {(searchResults.length === 0 && !fetching) &&
+      {(!attemptedSearch && !fetching && searchResults.length === 0) &&
         <Introduction />
       }
       {fetching && 

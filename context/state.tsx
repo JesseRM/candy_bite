@@ -5,7 +5,9 @@ interface ContextProps {
   selectedCandy: CandyInfo | null;
   setSelectedCandy: React.Dispatch<React.SetStateAction<CandyInfo | null>>;
   searchResults: CandyInfo[];
-  setSearchResults: React.Dispatch<React.SetStateAction<CandyInfo[]>>
+  setSearchResults: React.Dispatch<React.SetStateAction<CandyInfo[]>>;
+  attemptedSearch: boolean;
+  setAttemptedSearch: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CandyBiteContext = createContext<ContextProps>({} as ContextProps);
@@ -13,11 +15,14 @@ const CandyBiteContext = createContext<ContextProps>({} as ContextProps);
 export const CandyBiteProvider = ({ children }: {children: any}) => {
   const [selectedCandy, setSelectedCandy] = useState<CandyInfo | null>(null);
   const [searchResults, setSearchResults] = useState<CandyInfo[]>([]);
+  const [attemptedSearch, setAttemptedSearch] = useState(false);
   const value: ContextProps = {
     selectedCandy,
     setSelectedCandy,
     searchResults,
-    setSearchResults
+    setSearchResults,
+    attemptedSearch,
+    setAttemptedSearch
   }
 
   return (

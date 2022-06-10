@@ -7,14 +7,15 @@ import CandyBiteContext from '../context/state';
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const { setSearchResults } = useContext(CandyBiteContext);
+  const { setSearchResults, setAttemptedSearch } = useContext(CandyBiteContext);
 
   function displayMenu() {
     setShowMenu(showMenu ? false : true);
   }
 
-  function clearSearchResults() {
+  function handleLinkClick() {
     setSearchResults([]);
+    setAttemptedSearch(false);
   }
   
   return (
@@ -48,13 +49,13 @@ const NavBar = () => {
           onClick={displayMenu} 
           data-visible={showMenu}
         >
-          <li onClick={clearSearchResults}>
+          <li onClick={handleLinkClick}>
             <Link href='/'>Home</Link>
           </li>
-          <li onClick={clearSearchResults}>
+          <li onClick={handleLinkClick}>
             <Link href='/compare'>Compare</Link>
           </li>
-          <li onClick={clearSearchResults}>
+          <li onClick={handleLinkClick}>
             <Link href='/about'>About</Link>
           </li>
         </ul>

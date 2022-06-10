@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
+import CandyBiteContext from '../context/state';
 import { CandyInfo } from '../interfaces/globalInterfaces';
 import styles from '../styles/SearchBar.module.css';
 
@@ -11,6 +12,7 @@ interface SearchBarProps {
 
 const SearchBar = ({ setSearchResults, setFetching, setNoResults }: SearchBarProps) => {  
   const [term, setTerm] = useState("");
+  const { setAttemptedSearch } = useContext(CandyBiteContext);
   
   function handleclick() {
     fetchCandy();
@@ -27,6 +29,8 @@ const SearchBar = ({ setSearchResults, setFetching, setNoResults }: SearchBarPro
   }
 
   function fetchCandy() {
+    setAttemptedSearch(true);
+
     if (!term || term.trim().length === 0) return;
     
     const url = `/api/candy/${term.toLowerCase()}`;
@@ -39,7 +43,7 @@ const SearchBar = ({ setSearchResults, setFetching, setNoResults }: SearchBarPro
       });
   }
 
-  //Clear input element on refresh
+  //Clear input element on mount
   useEffect(() => {
     const inputEl = document.querySelector("input");
     
