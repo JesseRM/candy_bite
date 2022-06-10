@@ -7,7 +7,6 @@ import NoResult from "../components/NoResult";
 import SearchBar from "../components/SearchBar";
 import Spinner from "../components/Spinner";
 import CandyBiteContext from "../context/state";
-import CandyInfo from "../interfaces/globalInterfaces";
 import styles from "../styles/Compare.module.css";
 
 const Compare: NextPage = () => {
