@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { IoSearch } from 'react-icons/io5';
-import CandyInfo from '../interfaces/globalInterfaces';
+import { CandyInfo } from '../interfaces/globalInterfaces';
 import styles from '../styles/SearchBar.module.css';
 
 interface SearchBarProps {

@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import CandyInfo from "../interfaces/globalInterfaces";
+import { CandyInfo } from "../interfaces/globalInterfaces";
 
 interface ContextProps {
   selectedCandy: CandyInfo | null;

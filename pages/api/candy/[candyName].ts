@@ -1,12 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { CandyInfo } from '../../../interfaces/globalInterfaces';
 import prisma from '../../../prisma/client';
-
-interface CandyInfo {
-  candyName: String;
-  imageUrl: String;
-  portion: number;
-  nutrients: Object[]
-}
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const candyName: string | undefined = String(req.query.candyName);

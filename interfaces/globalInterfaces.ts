@@ -1,8 +1,21 @@
-interface CandyInfo {
-  candyName: String;
-  imageUrl: String;
+export interface CandyInfo {
+  candyName: string;
+  imageUrl: string;
   portion: number;
-  nutrients: Object[]
+  nutrients: FoodNutrients[];
 }
 
-export default CandyInfo;
+export interface FoodNutrients {
+  type: string;
+  nutrient: Nutrient;
+  id: number;
+  amount: number;
+}
+
+export interface Nutrient {
+  id: number;
+  number: string;
+  name: string;
+  rank: number;
+  unitName: string;
+}
