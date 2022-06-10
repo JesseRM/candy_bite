@@ -30,7 +30,7 @@ const Home: NextPage = () => {
       {fetching && 
         <Spinner />
       }
-      {noResults &&
+      {(noResults && !fetching) &&
         <NoResult />
       }
       {!fetching &&
