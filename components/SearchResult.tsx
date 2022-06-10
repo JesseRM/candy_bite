@@ -3,8 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/SearchResult.module.css";
 import { useContext } from "react";
+import { CandyInfo } from "../interfaces/globalInterfaces";
 
-const SearchResult = ({ searchResults }: {searchResults: any}) => {
+interface SearchResultProps {
+  searchResults: CandyInfo[];
+}
+
+const SearchResult = ({ searchResults }: SearchResultProps) => {
   const { setSelectedCandy } = useContext(CandyBiteContext);
 
   function handleClick(index: number) {
@@ -13,7 +18,7 @@ const SearchResult = ({ searchResults }: {searchResults: any}) => {
   
   return (
     <div className={styles['main-container']}>
-      {searchResults && searchResults.map((candy: any, index: number) => {
+      {searchResults && searchResults.map((candy: CandyInfo, index: number) => {
         return(
           <div 
             key={index} 
