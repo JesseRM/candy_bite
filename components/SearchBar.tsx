@@ -23,15 +23,13 @@ const SearchBar = ({ setSearchResults, setFetching, setNoResults }: SearchBarPro
 
     if (event.keyCode === ENTER_KEY) {
       fetchCandy();
-
-      if (term && term.trim().length > 0) setFetching(true);
     }
   }
 
   function fetchCandy() {
-    setAttemptedSearch(true);
-
     if (!term || term.trim().length === 0) return;
+    setAttemptedSearch(true);
+    setFetching(true);
     
     const url = `/api/candy/${term.toLowerCase()}`;
     fetch(url)
