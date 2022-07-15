@@ -15,6 +15,11 @@
   background-color: #457B9D;
   color: white;
   border: thin solid #457B9D;
+  cursor: pointer;
+}
+
+.search-btn:active {
+  opacity: 0.5;
 }
 
 @media (min-width: 1024px) {
