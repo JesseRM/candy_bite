@@ -100,7 +100,7 @@ const Compare: NextPage = () => {
               </select>
             </div>
             <button 
-              className={styles['add']} 
+              className={styles['add-btn']} 
               onClick={handleAddClick}
             >
               Add Item

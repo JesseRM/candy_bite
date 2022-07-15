@@ -29,12 +29,17 @@
   outline: none;
 }
 
-.add {
+.add-btn {
   border-radius: 5px;
   background-color: #023047;
   border: none;
   width: 6rem;
   color: white;
+  cursor: pointer;
+}
+
+.add-btn:active {
+  opacity: 0.5;
 }
 
 .done-btn {
@@ -43,10 +48,11 @@
   background-color: #40916c;
   color: white;
   border: thin solid #40916c;
+  cursor: pointer;
 }
 
 .done-btn:active {
-  background-color: #1b4332;
+  opacity: 0.5;
 }
 
 .title {
