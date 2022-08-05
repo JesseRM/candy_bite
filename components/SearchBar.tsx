@@ -8,9 +8,10 @@ interface SearchBarProps {
   setSearchResults: React.Dispatch<React.SetStateAction<CandyInfo[]>>;
   setFetching: Dispatch<SetStateAction<boolean>>;
   setNoResults: Dispatch<SetStateAction<boolean>>;
+  setDisplayErrorMessage: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SearchBar = ({ setSearchResults, setFetching, setNoResults }: SearchBarProps) => {  
+const SearchBar = ({ setSearchResults, setFetching, setNoResults, setDisplayErrorMessage }: SearchBarProps) => {  
   const [term, setTerm] = useState("");
   const { setAttemptedSearch } = useContext(CandyBiteContext);
   
@@ -38,6 +39,11 @@ const SearchBar = ({ setSearchResults, setFetching, setNoResults }: SearchBarPro
         setFetching(false);
         setSearchResults(data);
         setNoResults(data.length === 0 ? true : false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setFetching(false);
+        setDisplayErrorMessage(true);
       });
   }
 

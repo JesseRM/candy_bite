@@ -3,6 +3,7 @@ import { ChangeEvent, useContext, useState } from "react";
 import CompareInstructions from "../components/CompareInstructions";
 import CompareList from "../components/CompareList";
 import CompSearchResults from "../components/CompSearchResults";
+import ErrorMessage from "../components/ErrorMessage";
 import NoResult from "../components/NoResult";
 import SearchBar from "../components/SearchBar";
 import Spinner from "../components/Spinner";
@@ -16,7 +17,12 @@ const Compare: NextPage = () => {
   const [searchMode, setSearchMode] = useState(true);
   const [fetching, setFetching] = useState(false);
   const [noResults, setNoResults] = useState(false);
-  const { searchResults, setSearchResults } = useContext(CandyBiteContext); 
+  const { 
+    searchResults, 
+    setSearchResults, 
+    displayErrorMessage,
+    setDisplayErrorMessage
+  } = useContext(CandyBiteContext); 
   
   function handleNutrChange(event: ChangeEvent<HTMLSelectElement>) {
     setNutrIndex(parseInt(event.target.value));
@@ -45,6 +51,7 @@ const Compare: NextPage = () => {
             setSearchResults={setSearchResults}  
             setFetching={setFetching}
             setNoResults={setNoResults} 
+            setDisplayErrorMessage={setDisplayErrorMessage}
           />
           <div className={styles['done-btn-container']}>
             <button 
@@ -63,11 +70,14 @@ const Compare: NextPage = () => {
           }
         </>
       }
-      {(searchResults.length === 0 && searchMode && !fetching) &&
+      {(searchResults.length === 0 && searchMode && !fetching && !displayErrorMessage) &&
         <CompareInstructions />
       }
       {(noResults && !fetching) &&
         <NoResult />
+      }
+      {(displayErrorMessage && !fetching) &&
+        <ErrorMessage />
       }
       {fetching && 
         <Spinner />
