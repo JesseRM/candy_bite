@@ -7,7 +7,11 @@ import CandyBiteContext from '../context/state';
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const { setSearchResults, setAttemptedSearch } = useContext(CandyBiteContext);
+  const { 
+    setSearchResults, 
+    setAttemptedSearch, 
+    setDisplayErrorMessage 
+  } = useContext(CandyBiteContext);
 
   function displayMenu() {
     setShowMenu(showMenu ? false : true);
@@ -16,6 +20,7 @@ const NavBar = () => {
   function handleLinkClick() {
     setSearchResults([]);
     setAttemptedSearch(false);
+    setDisplayErrorMessage(false);
   }
   
   return (
