@@ -1,0 +1,18 @@
+.main-container {
+  text-align: center;
+}
+
+.icon-container {
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.icon-sadface {
+  font-size: 5rem;
+}
+
+.message {
+  margin: 1.5rem 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
