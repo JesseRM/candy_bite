@@ -19,7 +19,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     for (const candy of candies) {
       const fdcId = candy.fdc_id;
       const usdaApi = `https://api.nal.usda.gov/fdc/v1/food/${fdcId}?api_key=${process.env.USDA_API_KEY}`;
-      let statusCode = 404;
       let response: Response | null = null;
       let result: any;
 
@@ -29,9 +28,19 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         to make request until we don't get a 404. Also, the API is very slow overall,
         especially when having to make requests for multiple items.
       */
-      while (statusCode === 404) {
+
+      let attempts = 0;
+      let statusCode = null;
+      const SUCCESS_CODE = 200;
+      const ATTEMPT_LIMIT = 10;
+
+      while (statusCode !== SUCCESS_CODE) {
         response = await fetch(usdaApi);
         statusCode = response.status;
+
+        attempts++;
+        
+        if (attempts > ATTEMPT_LIMIT) throw "Fetch attempt limit reached. USDA API did not respond with data.";
       }
 
       if (response) {
@@ -56,8 +65,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     res.status(200);
     res.json(data);
   } catch (error) {
-    res.status(500);
-    res.json({error: "Unable to retreive information from db"})
+    console.log(error);
+    res.status(504);
+    res.json({error: "Unable to retreive nutrition data."})
   }
 }
 
