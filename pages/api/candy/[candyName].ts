@@ -40,7 +40,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         attempts++;
         
-        if (attempts > ATTEMPT_LIMIT) throw "Fetch attempt limit reached. USDA API did not respond with data.";
+        if (attempts > ATTEMPT_LIMIT) throw new Error("Fetch attempt limit reached. USDA API did not respond with data.");
       }
 
       if (response) {
