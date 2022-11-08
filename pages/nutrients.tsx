@@ -101,7 +101,13 @@ const Nutrients: NextPage = () => {
         </Link>
       </div>
       <div className={styles['portion-container']}>
-        Portion: <input onChange={handlePortionInput} value={portion} type="tel" /> g
+        <span className={styles['portion-title']}>Portion: </span>
+        <input
+          className={styles['portion-input']} 
+          onChange={handlePortionInput} 
+          value={portion} 
+          type="tel" 
+        /> g
       </div>
       <div className={styles['table-container']}>
         <table className={styles['main-table']}>
