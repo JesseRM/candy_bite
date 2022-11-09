@@ -1,25 +1,36 @@
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
-import { IoSearch } from 'react-icons/io5';
-import CandyBiteContext from '../context/state';
-import { CandyInfo } from '../interfaces/globalInterfaces';
-import styles from '../styles/SearchBar.module.css';
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { IoSearch } from "react-icons/io5";
+import CandyBiteContext from "../context/state";
+import { CandyInfo } from "../interfaces/globalInterfaces";
+import styles from "../styles/SearchBar.module.css";
 
 interface SearchBarProps {
-  setSearchResults: React.Dispatch<React.SetStateAction<CandyInfo[]>>;
+  setSearchResults: Dispatch<SetStateAction<CandyInfo[]>>;
   setFetching: Dispatch<SetStateAction<boolean>>;
   setNoResults: Dispatch<SetStateAction<boolean>>;
-  setDisplayErrorMessage: React.Dispatch<React.SetStateAction<boolean>>;
+  setDisplayErrorMessage: Dispatch<SetStateAction<boolean>>;
 }
 
-const SearchBar = ({ setSearchResults, setFetching, setNoResults, setDisplayErrorMessage }: SearchBarProps) => {  
+const SearchBar = ({
+  setSearchResults,
+  setFetching,
+  setNoResults,
+  setDisplayErrorMessage,
+}: SearchBarProps) => {
   const [term, setTerm] = useState("");
   const { setAttemptedSearch } = useContext(CandyBiteContext);
-  
+
   function handleclick() {
     fetchCandy();
   }
 
-  function handleKeyUp(event:any) {
+  function handleKeyUp(event: any) {
     const ENTER_KEY: number = 13;
 
     if (event.keyCode === ENTER_KEY) {
@@ -29,12 +40,13 @@ const SearchBar = ({ setSearchResults, setFetching, setNoResults, setDisplayErro
 
   function fetchCandy() {
     if (!term || term.trim().length === 0) return;
+    
     setAttemptedSearch(true);
     setFetching(true);
-    
+
     const url = `/api/candy/${term.toLowerCase()}`;
     fetch(url)
-      .then(response => response.json())
+      .then((response) => response.json())
       .then((data) => {
         setFetching(false);
         setSearchResults(data);
@@ -50,28 +62,24 @@ const SearchBar = ({ setSearchResults, setFetching, setNoResults, setDisplayErro
   //Clear input element on mount
   useEffect(() => {
     const inputEl = document.querySelector("input");
-    
+
     if (inputEl) inputEl.value = "";
-    
   }, []);
-  
+
   return (
-    <div className={styles['main-container']}>
+    <div className={styles["main-container"]}>
       <input
-        className={styles['search-input']} 
-        type="search" 
-        placeholder="Search candy" 
+        className={styles["search-input"]}
+        type="search"
+        placeholder="Search candy"
         onChange={(event) => setTerm(event.target.value)}
         onKeyUp={handleKeyUp}
       />
-      <button 
-        className={styles['search-btn']} 
-        onClick={handleclick}
-      >
+      <button className={styles["search-btn"]} onClick={handleclick}>
         <IoSearch />
       </button>
     </div>
-  )
-}
+  );
+};
 
 export default SearchBar;
