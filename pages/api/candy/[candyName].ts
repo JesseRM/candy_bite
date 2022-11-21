@@ -6,13 +6,16 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const candyName: string | undefined = String(req.query.candyName);
 
   try {
-    const candies = await prisma.candy.findMany({
+    const candies = await prisma.candies.findMany({
       where: {
         candy_name: {
           contains: candyName.toLowerCase(),
         },
       },
-    });
+      include: {
+        candy_images: true
+      }
+    }); 
 
     const data: CandyInfo[] = [];
 
@@ -50,7 +53,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         result = await response.json();
 
         const candyName = candy.candy_name;
-        const imageUrl = candy.image_url;
+        const imageUrl = candy.candy_images[0].image_url;
         const portion: number = result["inputFoods"][0]["ingredientWeight"];
         const nutrients = result["foodNutrients"];
 
