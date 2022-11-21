@@ -7,9 +7,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model candy {
-  candy_id   Int    @id @default(autoincrement())
-  fdc_id     String @db.VarChar
-  candy_name String @db.VarChar
-  image_url  String @db.VarChar
+model candies {
+  candy_id     Int            @id @default(autoincrement())
+  candy_name   String         @db.VarChar(100)
+  fdc_id       String         @db.VarChar(100)
+  candy_images candy_images[]
+}
+
+model candy_images {
+  image_id  Int      @id @default(autoincrement())
+  candy_id  Int?
+  image_url String   @db.VarChar(500)
+  candies   candies? @relation(fields: [candy_id], references: [candy_id], onDelete: NoAction, onUpdate: NoAction)
 }
