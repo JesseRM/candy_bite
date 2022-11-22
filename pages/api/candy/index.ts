@@ -3,7 +3,7 @@ import prisma from "../../../prisma/client";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const candies = await prisma.candy.findMany();
+    const candies = await prisma.candies.findMany();
 
     res.status(200);
     res.json(candies);
