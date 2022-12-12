@@ -71,6 +71,7 @@ const Compare: NextPage = () => {
       {searchResults.length === 0 &&
         searchMode &&
         !fetching &&
+        !noResults &&
         !displayErrorMessage && <CompareInstructions />}
       {noResults && !fetching && <NoResult />}
       {displayErrorMessage && !fetching && <ErrorMessage />}
