@@ -8,6 +8,8 @@
   width: 60%;
   height: 2rem;
   border: thin solid #457B9D;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
 }
 
 .search-btn {
@@ -15,6 +17,8 @@
   background-color: #457B9D;
   color: white;
   border: thin solid #457B9D;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
   cursor: pointer;
 }
 
