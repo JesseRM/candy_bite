@@ -21,6 +21,10 @@ const Layout = ({ children }: LayoutProps) => {
           href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap"
           rel="stylesheet"
         />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Modak&display=swap" 
+          rel="stylesheet" 
+        />
       </Head>
       <div className={styles.container}>
         <NavBar />

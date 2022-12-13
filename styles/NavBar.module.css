@@ -25,15 +25,11 @@
   align-items: center;
   justify-content: space-between;
   background-image: linear-gradient(
-    280deg,
-    hsl(209deg 100% 30%) 0%,
-    hsl(210deg 85% 33%) 18%,
-    hsl(211deg 75% 35%) 37%,
-    hsl(211deg 68% 37%) 55%,
-    hsl(211deg 62% 39%) 70%,
-    hsl(211deg 57% 40%) 82%,
-    hsl(211deg 52% 42%) 92%,
-    hsl(211deg 48% 44%) 100%
+    4deg,
+  hsl(209deg 100% 30%) 0%,
+  hsl(247deg 32% 44%) 77%,
+  hsl(276deg 23% 46%) 99%,
+  hsl(317deg 16% 53%) 100%
   );
 }
 
@@ -61,6 +57,8 @@
   position: absolute;
   width: 100%;
   text-align: center;
+  font-family: 'Modak', cursive;
+  font-size: 1.43rem;
 }
 
 .site-name-1 {
