@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import CandyBiteContext from "../context/state";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,12 +29,17 @@ const SearchResult = ({ searchResults }: SearchResultProps) => {
             >
               <Link href="/nutrients" passHref={true}>
                 <div className={styles["image-container"]}>
-                  <Image
+                  {/* <Image
                     src={candy.imageUrl}
                     alt={`${candy.candyName} image`}
                     layout="fill"
                     objectFit="contain"
                     priority
+                  /> */}
+                  <img
+                    className={styles["candy-image"]}
+                    src={candy.imageUrl}
+                    alt={`${candy.candyName} image`}
                   />
                 </div>
               </Link>
