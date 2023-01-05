@@ -33,6 +33,7 @@ const SearchResult = ({ searchResults }: SearchResultProps) => {
                     alt={`${candy.candyName} image`}
                     layout="fill"
                     objectFit="contain"
+                    priority
                   />
                 </div>
               </Link>
