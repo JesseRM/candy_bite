@@ -1,4 +1,4 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 import { Dispatch, SetStateAction, MouseEvent } from "react";
 import { IoAddCircle } from "react-icons/io5";
 import { CandyInfo } from "../interfaces/globalInterfaces";
@@ -46,11 +46,16 @@ const CompSearchResults = ({
           return (
             <div key={index} className={styles["card"]}>
               <div className={styles["image-container"]}>
-                <Image
+                {/* <Image
                   src={candy.imageUrl}
                   alt={`${candy.candyName} image`}
                   layout="fill"
                   objectFit="contain"
+                /> */}
+                <img
+                  className={styles["candy-image"]}
+                  src={candy.imageUrl}
+                  alt={`${candy.candyName} image`}
                 />
               </div>
               <div className={styles["name-container"]}>

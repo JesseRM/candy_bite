@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next";
 import {
   ChangeEvent,
@@ -138,11 +139,16 @@ const Nutrients: NextPage = () => {
       </h1>
       <div className={styles["image-container"]}>
         <div className={styles["image"]}>
-          <Image
+          {/* <Image
             src={selectedCandy.imageUrl}
             alt={selectedCandy.candyName}
             layout="fill"
             objectFit="contain"
+          /> */}
+          <img
+            className={styles["candy-image"]}
+            src={selectedCandy.imageUrl}
+            alt={`${selectedCandy.candyName} image`}
           />
         </div>
       </div>
