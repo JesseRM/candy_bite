@@ -7,19 +7,23 @@
 .search-input {
   width: 60%;
   height: 2rem;
-  border: thin solid #457B9D;
+  border: thin solid #457b9d;
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .search-btn {
   width: 3.2rem;
-  background-color: #457B9D;
+  background-color: #457b9d;
   color: white;
-  border: thin solid #457B9D;
+  border: thin solid #457b9d;
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
   cursor: pointer;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 .search-btn:active {
