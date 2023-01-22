@@ -57,16 +57,18 @@
   position: absolute;
   width: 100%;
   text-align: center;
-  font-family: 'Modak', cursive;
+  font-family: "Modak", cursive;
   font-size: 1.43rem;
 }
 
 .site-name-1 {
   color: #fca311;
+  cursor: pointer;
 }
 
 .site-name-2 {
   color: #ffccd5;
+  cursor: pointer;
 }
 
 @media (min-width: 400px) {
@@ -78,7 +80,7 @@
 @media (min-width: 768px) {
   .links-container {
     --gap: 2rem;
-    
+
     position: static;
     flex-direction: row;
     transform: translateX(0%);
@@ -109,10 +111,10 @@
   .primary-header {
     height: 3.5rem;
   }
-  
+
   .links-container {
     --gap: 3rem;
-    
+
     margin-right: 3rem;
   }
 
@@ -134,4 +136,3 @@
     margin-left: 3rem;
   }
 }
-

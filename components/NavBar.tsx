@@ -31,8 +31,12 @@ const NavBar = () => {
         />
       </div>
       <div className={styles.title}>
-        <span className={styles["site-name-1"]}>Candy</span>{" "}
-        <span className={styles["site-name-2"]}>Bite</span>
+        <Link href="/" passHref>
+          <span className={styles["site-name-1"]}>Candy</span>
+        </Link>
+        <Link href="/" passHref>
+          <span className={styles["site-name-2"]}>Bite</span>
+        </Link>
       </div>
       {showMenu && (
         <IoClose className={styles["nav-toggle"]} onClick={displayMenu} />
