@@ -1,46 +1,36 @@
 import type { NextPage } from "next";
-import { useContext, useState } from "react";
-import ErrorMessage from "../components/ErrorMessage";
+import { useRouter } from "next/router";
 import Introduction from "../components/Introduction";
-import NoResult from "../components/NoResult";
 import SearchBar from "../components/SearchBar";
-import SearchResult from "../components/SearchResult";
-import Spinner from "../components/Spinner";
-import CandyBiteContext from "../context/state";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
-  const {
-    searchResults,
-    setSearchResults,
-    attemptedSearch,
-    displayErrorMessage,
-    setDisplayErrorMessage,
-  } = useContext(CandyBiteContext);
-  const [fetching, setFetching] = useState(false);
-  const [noResults, setNoResults] = useState(false);
+  const router = useRouter();
+
+  function searchHandler(term: string) {
+    if (!term || term.trim().length === 0) return;
+
+    const url = "/search/" + term;
+
+    router.push(url);
+  }
 
   return (
     <div>
       <div className={styles["welcome-container"]}>
-        <div className={styles["background-image"]}></div>
         <h1 className={styles["welcome"]}>
           Nutritional Information of Your Favorite Candy
         </h1>
+        <p className={styles["welcome-sub"]}>
+          Nutrient content based on portion size.
+        </p>
+        <p className={styles["welcome-sub"]}>
+          Select and compare vaious candy.
+        </p>
+        <hr />
+        <SearchBar searchHandler={searchHandler} />
       </div>
-      <SearchBar
-        setSearchResults={setSearchResults}
-        setFetching={setFetching}
-        setNoResults={setNoResults}
-        setDisplayErrorMessage={setDisplayErrorMessage}
-      />
-      {!attemptedSearch && !fetching && searchResults.length === 0 && (
-        <Introduction />
-      )}
-      {fetching && <Spinner />}
-      {noResults && !fetching && <NoResult />}
-      {displayErrorMessage && !fetching && <ErrorMessage />}
-      {!fetching && <SearchResult searchResults={searchResults} />}
+      <Introduction />
     </div>
   );
 };
