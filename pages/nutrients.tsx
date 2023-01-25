@@ -8,10 +8,9 @@ import {
   useState,
 } from "react";
 import CandyBiteContext from "../context/state";
-import Image from "next/image";
 import { IoArrowBack } from "react-icons/io5";
 import styles from "../styles/Nutrients.module.css";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface NutrientState {
   amountPer100: number;
@@ -20,6 +19,7 @@ interface NutrientState {
 
 const Nutrients: NextPage = () => {
   const { selectedCandy } = useContext(CandyBiteContext);
+  const router = useRouter();
 
   /*
     Nutrition information provided by USDA API is based on a 100 gram portion.
@@ -153,11 +153,9 @@ const Nutrients: NextPage = () => {
         </div>
       </div>
       <div className={styles["back-btn-container"]}>
-        <Link href="/" passHref={true}>
-          <button className={styles["back-btn"]}>
-            <IoArrowBack />
-          </button>
-        </Link>
+        <button className={styles["back-btn"]} onClick={() => router.back()}>
+          <IoArrowBack />
+        </button>
       </div>
       <div className={styles["portion-container"]}>
         <span className={styles["portion-title"]}>Portion: </span>
