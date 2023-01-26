@@ -55,6 +55,8 @@ const Search: NextPage = () => {
     fetchCandy(term);
     setSearchResults([]);
     setFetching(true);
+    //Update URL with new term
+    router.push("/search/" + term);
   }
 
   return (
