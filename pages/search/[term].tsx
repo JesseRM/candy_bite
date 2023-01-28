@@ -22,10 +22,13 @@ const Search: NextPage = () => {
   } = useContext(CandyBiteContext);
 
   useEffect(() => {
-    if (searchResults.length === 0) {
+    if (router.isReady) {
+      const term = router.query["term"] as string;
+      setTerm(term);
+
       fetchCandy(term);
     }
-  }, []);
+  }, [router.isReady, router.query["term"]]);
 
   function fetchCandy(term: string) {
     if (!term || term.trim().length === 0) return;
