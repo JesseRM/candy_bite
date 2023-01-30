@@ -43,17 +43,40 @@ const Compare: NextPage = () => {
     setNoResults(false);
   }
 
+  function searchHandler(term: string) {
+    if (!term || term.trim().length === 0) return;
+
+    fetchCandy(term);
+    setFetching(true);
+  }
+
+  function fetchCandy(term: string) {
+    if (!term || term.trim().length === 0) return;
+
+    setFetching(true);
+
+    const url = `/api/candy/${term.toLowerCase()}`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setFetching(false);
+        setSearchResults(data);
+        setNoResults(data.length === 0 ? true : false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setFetching(false);
+        setDisplayErrorMessage(true);
+      });
+  }
+
   return (
     <div>
       <h1 className={styles["title"]}>Compare Nutrients</h1>
       {searchMode && (
         <>
-          <SearchBar
-            setSearchResults={setSearchResults}
-            setFetching={setFetching}
-            setNoResults={setNoResults}
-            setDisplayErrorMessage={setDisplayErrorMessage}
-          />
+          <SearchBar searchHandler={searchHandler} />
           <div className={styles["done-btn-container"]}>
             <button className={styles["done-btn"]} onClick={handleDoneClick}>
               Done
