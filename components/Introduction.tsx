@@ -4,9 +4,9 @@ const Introduction = () => {
   return (
     <div className={styles["main-container"]}>
       <div className={styles["info-container"]}>
-        <h2 className={styles["info-header"]}>Search</h2>
+        <h2 className={styles["info-header"]}>Nutriton</h2>
         <p className={styles["info-text"]}>
-          Try searching for candy to get nutritional information
+          Get nutrient content such as calories, fat, sugar and more
         </p>
       </div>
       <div className={styles["info-container"]}>
