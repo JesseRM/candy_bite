@@ -26,7 +26,9 @@ const Search: NextPage = () => {
       const term = router.query["term"] as string;
       setTerm(term);
 
-      fetchCandy(term);
+      if (!searchResults.length) {
+        fetchCandy(term);
+      }
     }
   }, [router.isReady, router.query["term"]]);
 
