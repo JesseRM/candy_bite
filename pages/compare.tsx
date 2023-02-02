@@ -77,9 +77,9 @@ const Compare: NextPage = () => {
       {searchMode && (
         <>
           <SearchBar searchHandler={searchHandler} />
-          <div className={styles["done-btn-container"]}>
-            <button className={styles["done-btn"]} onClick={handleDoneClick}>
-              Done
+          <div className={styles["compare-btn-container"]}>
+            <button className={styles["compare-btn"]} onClick={handleDoneClick}>
+              Compare
             </button>
           </div>
           {!fetching && (
