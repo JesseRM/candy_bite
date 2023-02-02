@@ -6,7 +6,7 @@
   padding: 1rem 0;
 }
 
-.done-btn-container {
+.compare-btn-container {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -42,13 +42,15 @@
   opacity: 0.5;
 }
 
-.done-btn {
-  width: 60%;
-  height: 1.8rem;
+.compare-btn {
+  width: 6rem;
+  height: 2rem;
   background-color: #40916c;
   color: white;
   border: thin solid #40916c;
   cursor: pointer;
+  color: white;
+  border-radius: 5px;
 }
 
 .done-btn:active {
@@ -65,15 +67,12 @@
   .title {
     margin-top: 5rem;
   }
-
-  .done-btn {
-    width: 40%;
-  }
 }
 
 @media (min-width: 1024px) {
-  .done-btn {
-    width: 28%;
+  .compare-btn {
+    width: 7rem;
+    height: 2.5rem;
   }
 
   .controls-container {
@@ -81,4 +80,3 @@
     justify-content: center;
   }
 }
-
