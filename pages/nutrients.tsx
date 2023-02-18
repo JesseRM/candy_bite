@@ -25,22 +25,13 @@ const Nutrients: NextPage = () => {
     Nutrition information provided by USDA API is based on a 100 gram portion.
     This base value will be used to calculate nutrient content of other portions.
   */
-  const caloriesPer100 = selectedCandy
-    ? selectedCandy["nutrients"][2]["amount"]
-    : 0;
-  const fatPer100 = selectedCandy ? selectedCandy["nutrients"][4]["amount"] : 0;
-  const sugarPer100 = selectedCandy
-    ? selectedCandy["nutrients"][8]["amount"]
-    : 0;
-  const proteinPer100 = selectedCandy
-    ? selectedCandy["nutrients"][3]["amount"]
-    : 0;
-  const carbohydratePer100 = selectedCandy
-    ? selectedCandy["nutrients"][6]["amount"]
-    : 0;
-  const sodiumPer100 = selectedCandy
-    ? selectedCandy["nutrients"][15]["amount"]
-    : 0;
+  const nutrients = selectedCandy ? selectedCandy["nutrients"] : null;
+  const proteinPer100 = nutrients ? nutrients[0]["amount"] : 0;
+  const fatPer100 = nutrients ? nutrients[1]["amount"] : 0;
+  const carbohydratePer100 = nutrients ? nutrients[2]["amount"] : 0;
+  const caloriesPer100 = nutrients ? nutrients[3]["amount"] : 0;
+  const sugarPer100 = nutrients ? nutrients[4]["amount"] : 0;
+  const sodiumPer100 = nutrients ? nutrients[5]["amount"] : 0;
 
   const [portion, setPortion] = useState("100");
   const [calories, setCalories] = useState<NutrientState>({
@@ -68,23 +59,21 @@ const Nutrients: NextPage = () => {
     amount: Math.round(sodiumPer100),
   });
 
-  const caloriesUnit: string = selectedCandy
-    ? selectedCandy["nutrients"][2]["nutrient"]["unitName"]
+  const proteinUnit: string = nutrients
+    ? nutrients[0]["nutrient"]["unitName"]
     : "";
-  const fatUnit: string = selectedCandy
-    ? selectedCandy["nutrients"][4]["nutrient"]["unitName"]
+  const fatUnit: string = nutrients ? nutrients[1]["nutrient"]["unitName"] : "";
+  const carbohydrateUnit: string = nutrients
+    ? nutrients[2]["nutrient"]["unitName"]
     : "";
-  const sugarUnit: string = selectedCandy
-    ? selectedCandy["nutrients"][8]["nutrient"]["unitName"]
+  const caloriesUnit: string = nutrients
+    ? nutrients[3]["nutrient"]["unitName"]
     : "";
-  const proteinUnit: string = selectedCandy
-    ? selectedCandy["nutrients"][3]["nutrient"]["unitName"]
+  const sugarUnit: string = nutrients
+    ? nutrients[4]["nutrient"]["unitName"]
     : "";
-  const carbohydrateUnit: string = selectedCandy
-    ? selectedCandy["nutrients"][6]["nutrient"]["unitName"]
-    : "";
-  const sodiumUnit: string = selectedCandy
-    ? selectedCandy["nutrients"][15]["nutrient"]["unitName"]
+  const sodiumUnit: string = nutrients
+    ? nutrients[5]["nutrient"]["unitName"]
     : "";
 
   const nutrientSetters = [
