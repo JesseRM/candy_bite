@@ -13,15 +13,26 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         },
       },
       include: {
-        candy_images: true
-      }
-    }); 
+        candy_images: true,
+      },
+    });
 
     const data: CandyInfo[] = [];
+    /*
+        208 - Calories
+        204 - Fat 
+        269 - Sugar
+        203 - Protein
+        205 - Carbohydrate
+        307 - Sodium
+    */
+    const nutrientCodes: number[] = [208, 204, 269, 203, 205, 307];
 
     for (const candy of candies) {
       const fdcId = candy.fdc_id;
-      const usdaApi = `https://api.nal.usda.gov/fdc/v1/food/${fdcId}?api_key=${process.env.USDA_API_KEY}`;
+      const usdaApi = `https://api.nal.usda.gov/fdc/v1/food/${fdcId}?nutrients=${nutrientCodes.join()}&api_key=${
+        process.env.USDA_API_KEY
+      }`;
       let response: Response | null = null;
       let result: any;
 
@@ -54,8 +65,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         const candyName = candy.candy_name;
         const imageUrl = candy.candy_images[0].image_url;
-        const portion: number = result["inputFoods"][0]["ingredientWeight"];
-        const nutrients = result["foodNutrients"];
+        const portion: number = 100; //Default is 100 grams
+        const nutrients = result["foodNutrients"].sort(
+          (a: any, b: any) =>
+            Number(a["nutrient"]["number"]) - Number(b["nutrient"]["number"])
+        );
 
         const info: CandyInfo = {
           candyName,
