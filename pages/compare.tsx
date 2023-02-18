@@ -12,7 +12,7 @@ import { CandyInfo } from "../interfaces/globalInterfaces";
 import styles from "../styles/Compare.module.css";
 
 const Compare: NextPage = () => {
-  const [nutrIndex, setNutrIndex] = useState(2);
+  const [nutrIndex, setNutrIndex] = useState(3);
   const [sortOrder, setSortOrder] = useState("descending");
   const [selected, setSelected] = useState<CandyInfo[]>([]);
   const [searchMode, setSearchMode] = useState(true);
@@ -108,12 +108,12 @@ const Compare: NextPage = () => {
                 className={styles["nutrient"]}
                 onChange={handleNutrChange}
               >
-                <option value={2}>Calories</option>
-                <option value={4}>Fat</option>
-                <option value={8}>Sugar</option>
-                <option value={3}>Protein</option>
-                <option value={6}>Carbohydrate</option>
-                <option value={15}>Sodium</option>
+                <option value={3}>Calories</option>
+                <option value={1}>Fat</option>
+                <option value={4}>Sugar</option>
+                <option value={0}>Protein</option>
+                <option value={2}>Carbohydrate</option>
+                <option value={5}>Sodium</option>
               </select>
             </div>
             <div>
