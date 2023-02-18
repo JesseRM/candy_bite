@@ -10,12 +10,12 @@ interface CompareListProps {
 const CompareList = ({ nutrIndex, selected, sortOrder }: CompareListProps) => {
   const list = [...selected];
   const NUTRIENTS = {
-    2: "Calories",
-    4: "Fat",
-    8: "Sugar",
-    3: "Protein",
-    6: "Carbs",
-    15: "Sodium",
+    0: "Protein",
+    1: "Fat",
+    2: "Carbs",
+    3: "Calories",
+    4: "Sugar",
+    5: "Sodium",
   };
 
   if (sortOrder === "ascending") {
