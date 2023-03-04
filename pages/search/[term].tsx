@@ -40,7 +40,13 @@ const Search: NextPage = () => {
     const url = `/api/candy/${term.toLowerCase()}`;
 
     fetch(url)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error("Unable to retrieve candy data.");
+        }
+
+        return response.json();
+      })
       .then((data) => {
         setFetching(false);
         setSearchResults(data);
