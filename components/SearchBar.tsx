@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, KeyboardEvent } from "react";
 import { IoSearch } from "react-icons/io5";
 import styles from "../styles/SearchBar.module.css";
 
@@ -13,10 +13,10 @@ const SearchBar = ({ searchHandler }: SearchBarProps) => {
     searchHandler(term);
   }
 
-  function handleKeyUp(event: any) {
-    const ENTER_KEY: number = 13;
+  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    const ENTER_KEY: string = "Enter";
 
-    if (event.keyCode === ENTER_KEY) {
+    if (event.key === ENTER_KEY) {
       searchHandler(term);
     }
   }
@@ -35,7 +35,7 @@ const SearchBar = ({ searchHandler }: SearchBarProps) => {
         type="search"
         placeholder="     Search candy"
         onChange={(event) => setTerm(event.target.value)}
-        onKeyUp={handleKeyUp}
+        onKeyDown={handleKeyDown}
       />
       <button className={styles["search-btn"]} onClick={handleclick}>
         <IoSearch />
