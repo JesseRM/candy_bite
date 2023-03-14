@@ -1,4 +1,11 @@
-import { createContext, Dispatch, SetStateAction, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  FC,
+  ReactNode,
+  SetStateAction,
+  useState,
+} from "react";
 import { CandyInfo } from "../interfaces/globalInterfaces";
 
 interface ContextProps {
@@ -12,9 +19,13 @@ interface ContextProps {
   setDisplayErrorMessage: Dispatch<SetStateAction<boolean>>;
 }
 
+interface FCProps {
+  children: ReactNode;
+}
+
 const CandyBiteContext = createContext<ContextProps>({} as ContextProps);
 
-export const CandyBiteProvider = ({ children }: { children: any }) => {
+export const CandyBiteProvider: FC<FCProps> = ({ children }) => {
   const [selectedCandy, setSelectedCandy] = useState<CandyInfo | null>(null);
   const [searchResults, setSearchResults] = useState<CandyInfo[]>([]);
   const [attemptedSearch, setAttemptedSearch] = useState(false);
