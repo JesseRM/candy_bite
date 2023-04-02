@@ -21,16 +21,14 @@ const Search: NextPage = () => {
     setDisplayErrorMessage,
   } = useContext(CandyBiteContext);
 
+  //TODO: Fix isssue were request is made twice on initial mount
   useEffect(() => {
-    if (router.isReady) {
-      const term = router.query["term"] as string;
-      setTerm(term);
+    const newTerm = router.query["term"] as string;
 
-      if (!searchResults.length) {
-        fetchCandy(term);
-      }
-    }
-  }, [router.isReady, router.query["term"]]);
+    setTerm(newTerm);
+    setSearchResults([]);
+    fetchCandy(newTerm);
+  }, [router.query.term]);
 
   function fetchCandy(term: string) {
     if (!term || term.trim().length === 0) return;
@@ -62,10 +60,11 @@ const Search: NextPage = () => {
   function searchHandler(term: string) {
     if (!term || term.trim().length === 0) return;
 
+    setDisplayErrorMessage(false);
     setTerm(term);
-    fetchCandy(term);
     setSearchResults([]);
     setFetching(true);
+
     //Update URL with new term
     router.push("/search/" + term);
   }
