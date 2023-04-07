@@ -27,7 +27,7 @@ const SearchResult = ({ searchResults }: SearchResultProps) => {
               className={styles["card"]}
               onClick={() => handleClick(index)}
             >
-              <Link href="/nutrients" passHref={true}>
+              <Link href={"/nutrients/" + candy.fdcId} passHref={true}>
                 <div className={styles["image-container"]}>
                   {/* <Image
                     src={candy.imageUrl}
@@ -43,7 +43,7 @@ const SearchResult = ({ searchResults }: SearchResultProps) => {
                   />
                 </div>
               </Link>
-              <Link href="/nutrients" passHref={true}>
+              <Link href={"/nutrients/" + candy.fdcId} passHref={true}>
                 <div className={styles["info-container"]}>
                   <span>{candy.candyName.toUpperCase()}</span>
                 </div>
