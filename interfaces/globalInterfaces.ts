@@ -1,5 +1,6 @@
 export interface CandyInfo {
   candyName: string;
+  fdcId: string;
   imageUrl: string;
   portion: number;
   nutrients: FoodNutrients[];
