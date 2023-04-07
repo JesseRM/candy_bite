@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { CandyInfo } from "../../../../interfaces/globalInterfaces";
 import prisma from "../../../../prisma/client";
 import { fetchNutrientsWithFdcId } from "util/nutrientsApi";
 
