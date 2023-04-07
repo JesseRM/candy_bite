@@ -7,6 +7,7 @@ export const handlers = [
       ctx.json([
         {
           candyName: "snickers",
+          fdcId: "169589",
           imageUrl: "https://i.imgur.com/GA8grvo.png",
           portion: 100,
           nutrients: snickerNutrients,
