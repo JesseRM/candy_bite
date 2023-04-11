@@ -18,6 +18,9 @@ const Compare: NextPage = () => {
   const [searchMode, setSearchMode] = useState(true);
   const [fetching, setFetching] = useState(false);
   const [noResults, setNoResults] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(
+    "Oops, something went wrong."
+  );
   const {
     searchResults,
     setSearchResults,
@@ -103,7 +106,9 @@ const Compare: NextPage = () => {
         !noResults &&
         !displayErrorMessage && <CompareInstructions />}
       {noResults && !fetching && <NoResult />}
-      {displayErrorMessage && !fetching && <ErrorMessage />}
+      {displayErrorMessage && !fetching && (
+        <ErrorMessage message={errorMessage} />
+      )}
       {fetching && <Spinner />}
       {!searchMode && (
         <>

@@ -14,6 +14,9 @@ const Search: NextPage = () => {
   const [term, setTerm] = useState(router.query["term"] as string);
   const [fetching, setFetching] = useState(false);
   const [noResults, setNoResults] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(
+    "Oops, something went wrong."
+  );
   const {
     searchResults,
     setSearchResults,
@@ -76,7 +79,9 @@ const Search: NextPage = () => {
       <SearchResult searchResults={searchResults} />
       {fetching && <Spinner />}
       {noResults && !fetching && <NoResult />}
-      {displayErrorMessage && !fetching && <ErrorMessage />}
+      {displayErrorMessage && !fetching && (
+        <ErrorMessage message={errorMessage} />
+      )}
     </div>
   );
 };
