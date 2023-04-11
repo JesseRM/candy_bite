@@ -19,12 +19,17 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     //Fetch nutritional data from USDA API
     const nutrients = await fetchNutrientsWithFdcId(candy ? [candy] : []);
 
-    res.status(200);
-    res.json(nutrients.pop());
+    if (nutrients.length) {
+      res.status(200);
+      res.json(nutrients.pop());
+    } else {
+      res.status(404);
+      res.json({ error: "No candy found with that FDC ID" });
+    }
   } catch (error) {
     console.log(error);
-    res.status(504);
-    res.json({ error: "Unable to retreive nutrition data." });
+    res.status(500);
+    res.json({ error: "Server error." });
   }
 }
 

@@ -4,23 +4,22 @@ import {
   ChangeEvent,
   Dispatch,
   SetStateAction,
-  useContext,
   useEffect,
   useState,
 } from "react";
-import CandyBiteContext from "../../context/state";
 import { IoArrowBack } from "react-icons/io5";
 import styles from "../../styles/Nutrients.module.css";
 import { useRouter } from "next/router";
-import { CandyInfo, FoodNutrients } from "interfaces/globalInterfaces";
+import { CandyInfo } from "interfaces/globalInterfaces";
 import Spinner from "@/components/Spinner";
 import { NutrientState, UnitNames } from "interfaces/searchPageInterfaces";
+import ErrorMessage from "@/components/ErrorMessage";
 
 const Nutrients: NextPage = () => {
   const [candy, setCandy] = useState<CandyInfo | null>(null);
   const [fetching, setFetching] = useState(false);
-  const [noResults, setNoResults] = useState(true);
   const [displayErrorMessage, setDisplayErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const router = useRouter();
 
@@ -59,26 +58,38 @@ const Nutrients: NextPage = () => {
     if (!fdcId || fdcId.trim().length === 0) return;
 
     setFetching(true);
+    setDisplayErrorMessage(false);
 
     const url = `/api/candy/fdcid/${fdcId}`;
+    let responseStatus = 200;
 
     fetch(url)
       .then((response) => {
-        if (response.status !== 200) {
-          throw new Error("Unable to retrieve candy data.");
-        }
+        responseStatus = response.status;
 
         return response.json();
       })
       .then((data) => {
         setFetching(false);
-        setCandy(data);
-        setNoResults(false);
+
+        if (responseStatus === 200) {
+          setCandy(data);
+          setDisplayErrorMessage(false);
+        }
+
+        if (responseStatus === 404) {
+          setErrorMessage("Candy with that FDC ID does not exist.");
+          setDisplayErrorMessage(true);
+        }
+
+        if (responseStatus >= 500) {
+          throw new Error(data.error);
+        }
       })
       .catch((error) => {
         console.log(error);
         setFetching(false);
-        setNoResults(true);
+        setErrorMessage(error.message);
         setDisplayErrorMessage(true);
       });
   }
@@ -169,6 +180,7 @@ const Nutrients: NextPage = () => {
   return (
     <div>
       {fetching && <Spinner />}
+      {displayErrorMessage && <ErrorMessage message={errorMessage} />}
       {candy && (
         <>
           <h1 className={styles.welcome}>{candy.candyName.toUpperCase()}</h1>
