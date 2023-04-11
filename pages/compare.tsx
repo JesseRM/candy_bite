@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { ChangeEvent, useContext, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import CompareInstructions from "../components/CompareInstructions";
 import CompareList from "../components/CompareList";
 import CompSearchResults from "../components/CompSearchResults";
@@ -7,7 +7,6 @@ import ErrorMessage from "../components/ErrorMessage";
 import NoResult from "../components/NoResult";
 import SearchBar from "../components/SearchBar";
 import Spinner from "../components/Spinner";
-import CandyBiteContext from "../context/state";
 import { CandyInfo } from "../interfaces/globalInterfaces";
 import styles from "../styles/Compare.module.css";
 
@@ -21,12 +20,8 @@ const Compare: NextPage = () => {
   const [errorMessage, setErrorMessage] = useState(
     "Oops, something went wrong."
   );
-  const {
-    searchResults,
-    setSearchResults,
-    displayErrorMessage,
-    setDisplayErrorMessage,
-  } = useContext(CandyBiteContext);
+  const [searchResults, setSearchResults] = useState<CandyInfo[]>([]);
+  const [displayErrorMessage, setDisplayErrorMessage] = useState(false);
 
   function handleNutrChange(event: ChangeEvent<HTMLSelectElement>) {
     setNutrIndex(parseInt(event.target.value));

@@ -1,13 +1,13 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage";
 import NoResult from "../../components/NoResult";
 import SearchBar from "../../components/SearchBar";
 import SearchResult from "../../components/SearchResult";
 import Spinner from "../../components/Spinner";
-import CandyBiteContext from "../../context/state";
 import styles from "../../styles/[term].module.css";
+import { CandyInfo } from "interfaces/globalInterfaces";
 
 const Search: NextPage = () => {
   const router = useRouter();
@@ -17,14 +17,9 @@ const Search: NextPage = () => {
   const [errorMessage, setErrorMessage] = useState(
     "Oops, something went wrong."
   );
-  const {
-    searchResults,
-    setSearchResults,
-    displayErrorMessage,
-    setDisplayErrorMessage,
-  } = useContext(CandyBiteContext);
+  const [searchResults, setSearchResults] = useState<CandyInfo[]>([]);
+  const [displayErrorMessage, setDisplayErrorMessage] = useState(false);
 
-  //TODO: Fix isssue were request is made twice on initial mount
   useEffect(() => {
     const newTerm = router.query["term"] as string;
 
