@@ -34,23 +34,31 @@ const Search: NextPage = () => {
     setFetching(true);
 
     const url = `/api/candy/${term.toLowerCase()}`;
+    let responseStatus = 0;
 
     fetch(url)
       .then((response) => {
-        if (response.status !== 200) {
-          throw new Error("Unable to retrieve candy data.");
-        }
+        responseStatus = response.status;
 
         return response.json();
       })
       .then((data) => {
         setFetching(false);
-        setSearchResults(data);
-        setNoResults(data.length === 0 ? true : false);
+
+        if (responseStatus === 200) {
+          setSearchResults(data);
+          setDisplayErrorMessage(false);
+        } else if (responseStatus === 404) {
+          setErrorMessage("No candy found matching that term.");
+          setDisplayErrorMessage(true);
+        } else {
+          throw new Error(data.error);
+        }
       })
       .catch((error) => {
         console.log(error);
         setFetching(false);
+        setErrorMessage(error.message);
         setDisplayErrorMessage(true);
       });
   }
@@ -73,10 +81,7 @@ const Search: NextPage = () => {
       <SearchBar searchHandler={searchHandler} />
       <SearchResult searchResults={searchResults} />
       {fetching && <Spinner />}
-      {noResults && !fetching && <NoResult />}
-      {displayErrorMessage && !fetching && (
-        <ErrorMessage message={errorMessage} />
-      )}
+      {displayErrorMessage && <ErrorMessage message={errorMessage} />}
     </div>
   );
 };
