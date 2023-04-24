@@ -1,20 +1,17 @@
-/* eslint-disable @next/next/no-img-element */
-import CandyBiteContext from "../context/state";
-import Image from "next/image";
-import Link from "next/link";
 import styles from "../styles/SearchResult.module.css";
-import { useContext } from "react";
 import { CandyInfo } from "../interfaces/globalInterfaces";
+import { useRouter } from "next/router";
 
 interface SearchResultProps {
   searchResults: CandyInfo[];
 }
 
 const SearchResult = ({ searchResults }: SearchResultProps) => {
-  const { setSelectedCandy } = useContext(CandyBiteContext);
+  const router = useRouter();
 
-  function handleClick(index: number) {
-    setSelectedCandy(searchResults[index]);
+  function handleClick(candy: CandyInfo) {
+    const url = "/nutrients/" + candy.fdcId;
+    router.push(url);
   }
 
   return (
@@ -23,31 +20,28 @@ const SearchResult = ({ searchResults }: SearchResultProps) => {
         searchResults.map((candy: CandyInfo, index: number) => {
           return (
             <div
-              key={index}
               className={styles["card"]}
-              onClick={() => handleClick(index)}
+              key={index}
+              role="link"
+              onClick={() => handleClick(candy)}
             >
-              <Link href={"/nutrients/" + candy.fdcId} passHref={true}>
-                <div className={styles["image-container"]}>
-                  {/* <Image
+              <div className={styles["image-container"]}>
+                {/* <Image
                     src={candy.imageUrl}
                     alt={`${candy.candyName} image`}
                     layout="fill"
                     objectFit="contain"
                     priority
                   /> */}
-                  <img
-                    className={styles["candy-image"]}
-                    src={candy.imageUrl}
-                    alt={`${candy.candyName} image`}
-                  />
-                </div>
-              </Link>
-              <Link href={"/nutrients/" + candy.fdcId} passHref={true}>
-                <div className={styles["info-container"]}>
-                  <span>{candy.candyName.toUpperCase()}</span>
-                </div>
-              </Link>
+                <img
+                  className={styles["candy-image"]}
+                  src={candy.imageUrl}
+                  alt={`${candy.candyName} image`}
+                />
+              </div>
+              <div className={styles["info-container"]}>
+                <span>{candy.candyName.toUpperCase()}</span>
+              </div>
             </div>
           );
         })}
