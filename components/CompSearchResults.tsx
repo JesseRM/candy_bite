@@ -66,6 +66,7 @@ const CompSearchResults = ({
                   className={styles["add"]}
                   onClick={(event) => handleAddClick(event, candy)}
                   data-selected={alreadySelected ? true : false}
+                  data-testid="add-btn"
                 />
               </div>
             </div>
