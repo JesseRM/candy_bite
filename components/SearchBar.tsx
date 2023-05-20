@@ -37,7 +37,11 @@ const SearchBar = ({ searchHandler }: SearchBarProps) => {
         onChange={(event) => setTerm(event.target.value)}
         onKeyDown={handleKeyDown}
       />
-      <button className={styles["search-btn"]} onClick={handleclick}>
+      <button
+        className={styles["search-btn"]}
+        onClick={handleclick}
+        data-testid="search-button"
+      >
         <IoSearch />
       </button>
     </div>
