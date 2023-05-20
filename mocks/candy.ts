@@ -124,3 +124,84 @@ export const snickers = {
     },
   ],
 };
+
+export const twix = {
+  candyName: "twix",
+  fdcId: "168768",
+  imageUrl: "https://i.imgur.com/hoVxEHc.png",
+  portion: 100,
+  nutrients: [
+    {
+      type: "FoodNutrient",
+      nutrient: {
+        id: 1003,
+        number: "203",
+        name: "Protein",
+        rank: 600,
+        unitName: "g",
+      },
+      id: 13298173,
+      amount: 4.91,
+    },
+    {
+      type: "FoodNutrient",
+      nutrient: {
+        id: 1004,
+        number: "204",
+        name: "Total lipid (fat)",
+        rank: 800,
+        unitName: "g",
+      },
+      id: 13298174,
+      amount: 24.85,
+    },
+    {
+      type: "FoodNutrient",
+      nutrient: {
+        id: 1005,
+        number: "205",
+        name: "Carbohydrate, by difference",
+        rank: 1110,
+        unitName: "g",
+      },
+      id: 13298175,
+      amount: 64.8,
+    },
+    {
+      type: "FoodNutrient",
+      nutrient: {
+        id: 1008,
+        number: "208",
+        name: "Energy",
+        rank: 300,
+        unitName: "kcal",
+      },
+      id: 13298176,
+      amount: 502,
+    },
+    {
+      type: "FoodNutrient",
+      nutrient: {
+        id: 2000,
+        number: "269",
+        name: "Sugars, total including NLEA",
+        rank: 1510,
+        unitName: "g",
+      },
+      id: 13298181,
+      amount: 48.25,
+    },
+    {
+      type: "FoodNutrient",
+      nutrient: {
+        id: 1093,
+        number: "307",
+        name: "Sodium, Na",
+        rank: 5800,
+        unitName: "mg",
+      },
+      id: 13298188,
+      amount: 198,
+    },
+  ],
+};
