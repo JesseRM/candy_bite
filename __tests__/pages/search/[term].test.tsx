@@ -1,5 +1,4 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { CandyBiteProvider } from "@/context/state";
 import { useRouter } from "next/router";
 import React from "react";
 import Search from "@/pages/search/[term]";
@@ -17,21 +16,13 @@ describe("Search page with results", () => {
       isReady: true,
     }));
 
-    render(
-      <CandyBiteProvider>
-        <Search />
-      </CandyBiteProvider>
-    );
+    render(<Search />);
 
     expect(screen.getByRole("heading")).toHaveTextContent(term);
   });
 
   test("Contains searchbox and search button", () => {
-    render(
-      <CandyBiteProvider>
-        <Search />
-      </CandyBiteProvider>
-    );
+    render(<Search />);
 
     const searchbox = screen.getByRole("searchbox");
     expect(searchbox).toBeInTheDocument();
@@ -48,11 +39,7 @@ describe("Search page with results", () => {
 
     const altText = term + " image";
 
-    render(
-      <CandyBiteProvider>
-        <Search />
-      </CandyBiteProvider>
-    );
+    render(<Search />);
 
     await waitFor(() =>
       expect(screen.getByAltText(altText)).toBeInTheDocument()
@@ -68,11 +55,7 @@ describe("Search page with results", () => {
       push,
     }));
 
-    render(
-      <CandyBiteProvider>
-        <Search />
-      </CandyBiteProvider>
-    );
+    render(<Search />);
 
     await waitFor(() => screen.getByRole("link"));
 

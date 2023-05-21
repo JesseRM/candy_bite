@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { CandyBiteProvider } from "@/context/state";
 import { useRouter } from "next/router";
 import Home from "@/pages/index";
 
@@ -9,11 +8,7 @@ jest.mock("next/router", () => ({
 
 describe("Index page (Home)", () => {
   test("Contains searchbox and search button", () => {
-    render(
-      <CandyBiteProvider>
-        <Home />
-      </CandyBiteProvider>
-    );
+    render(<Home />);
 
     const searchbox = screen.getByRole("searchbox");
     expect(searchbox).toBeInTheDocument();
@@ -27,11 +22,7 @@ describe("Index page (Home)", () => {
       push,
     }));
 
-    render(
-      <CandyBiteProvider>
-        <Home />
-      </CandyBiteProvider>
-    );
+    render(<Home />);
 
     let candyName = "snicker";
     const searchbox = screen.getByRole("searchbox");
@@ -49,11 +40,7 @@ describe("Index page (Home)", () => {
       push,
     }));
 
-    render(
-      <CandyBiteProvider>
-        <Home />
-      </CandyBiteProvider>
-    );
+    render(<Home />);
 
     let candyName = "twix";
     const searchbox = screen.getByRole("searchbox");
