@@ -4,7 +4,7 @@ const Introduction = () => {
   return (
     <div className={styles["main-container"]}>
       <div className={styles["info-container"]}>
-        <h2 className={styles["info-header"]}>Nutriton</h2>
+        <h2 className={styles["info-header"]}>Nutrition</h2>
         <p className={styles["info-text"]}>
           Get nutrient content such as calories, fat, sugar and more
         </p>
