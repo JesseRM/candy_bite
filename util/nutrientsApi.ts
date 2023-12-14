@@ -10,6 +10,8 @@ const REDIS_URL = process.env.REDIS_URL as string;
 const redis = new Redis(REDIS_URL);
 
 export async function fetchNutrientsWithFdcId(candies: candy[]) {
+  if (candies.length === 0) return [];
+
   //Fetch nutritional data from USDA API for each hit returned from database
   let fdcIds: string[] = [];
 
