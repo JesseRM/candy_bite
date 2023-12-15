@@ -75,29 +75,29 @@ export async function fetchNutrientsWithFdcId(candies: candy[]) {
     */
 
     let attempts = 0;
-    let statusCode = null;
+    let statusCode = 0;
     const SUCCESS_CODE = 200;
     const ATTEMPT_LIMIT = 5;
 
     while (statusCode !== SUCCESS_CODE) {
       response = await fetch(usdaApi);
       statusCode = response.status;
-
       attempts++;
 
-      if (attempts > ATTEMPT_LIMIT)
+      if (attempts >= ATTEMPT_LIMIT) {
         throw new Error(
           "Fetch attempt limit reached. USDA API did not respond with data."
         );
+      }
     }
 
     if (response) {
       results = await response.json();
-
       nutrients.push(...results);
 
+      //Cache results into Redis
       for (let result of results) {
-        redis.set(result.fdcId, JSON.stringify(result));
+        await redis.set(result.fdcId, JSON.stringify(result));
       }
     }
   }

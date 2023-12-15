@@ -57,6 +57,7 @@ const Search: NextPage = () => {
       })
       .catch((error) => {
         console.log(error);
+
         setFetching(false);
         setErrorMessage(error.message);
         setDisplayErrorMessage(true);
