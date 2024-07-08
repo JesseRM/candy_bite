@@ -24,7 +24,9 @@ const NavBar = () => {
     <header className={`${styles["primary-header"]} ${styles.flex}`}>
       <div className={styles["logo-container"]}>
         <Image
-          src={"https://i.imgur.com/zlfVrsv.png"}
+          src={
+            "https://res.cloudinary.com/dq1oaour4/image/upload/v1720417330/candy_bite/kbpd5bv5bkzzhznf3mi7.png"
+          }
           alt="Candy Bite logo"
           layout="fill"
           objectFit="contain"
