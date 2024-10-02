@@ -1,17 +1,17 @@
-import { rest } from "msw";
+import { http, HttpResponse } from "msw";
 import { snickers, twix } from "./candy";
 
 export const handlers = [
-  rest.get("/api/candy/snickers", (req, res, ctx) => {
-    return res(ctx.json([snickers]));
+  http.get("/api/candy/snickers", ({ request, params, cookies }) => {
+    return HttpResponse.json([snickers]);
   }),
-  rest.get("/api/candy/fdcid/169589", (req, res, ctx) => {
-    return res(ctx.json(snickers));
+  http.get("/api/candy/fdcid/169589", ({ request, params, cookies }) => {
+    return HttpResponse.json(snickers);
   }),
-  rest.get("/api/candy/twix", (req, res, ctx) => {
-    return res(ctx.json([twix]));
+  http.get("/api/candy/twix", ({ request, params, cookies }) => {
+    return HttpResponse.json([twix]);
   }),
-  rest.get("/api/candy/fdcid/168768", (req, res, ctx) => {
-    return res(ctx.json(twix));
+  http.get("/api/candy/fdcid/168768", ({ request, params, cookies }) => {
+    return HttpResponse.json(twix);
   }),
 ];
